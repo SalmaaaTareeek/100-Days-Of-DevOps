@@ -76,7 +76,63 @@ Example in Linux: /usr/sbin/nologin
 
 Mark’s UID is `900` because he was created as a **system user**. System users are assigned UIDs below `1000` to distinguish them from regular users. These accounts are generally used for running system services and do not have interactive login privileges.
 
+## Solution
 
+Now that you understand the tasks and the differences between the user types and shell types, let's jump into our solution.
+
+1. You are currently on the jump server. For example, if the task requires adding a user on Server 2, and according to the diagram, Port 22 (SSH) is enabled, you can connect to Server 2 using the following command:
+
+```bash
+ssh username@hostname
+```
+Example:
+
+```bash
+ssh steve@stapp02.stratos.xfusioncorp.com
+```
+
+2. The server will ask you to verify the fingerprint; type yes to continue. Then, it will prompt you for Steve's password—enter it. Voilà! Now you are logged into Server 2.
+
+3. Next, to gain root privileges, run:
+```bash
+sudo su
+```
+Enter Steve's password again to switch to the root user.
+
+4. Add a new user named **Mark** with the following command:
+
+  ```bash
+sudo adduser --system --shell /usr/sbin/nologin john
+```
+| Option          | Description                                                                                  |
+|-----------------|----------------------------------------------------------------------------------------------|
+| `--system`      | Creates a system user account, which is used for running system services and has no password. |
+| `--shell`       | Specifies the login shell for the user. In this case, `/usr/sbin/nologin` disables login.    |
+
+### Debugging: Check if user 'mark' exists
+
+Before adding the user, run:
+
+```bash
+id mark
+```
+Expected result if user does not exist:
+
+```bash
+id: ‘mark’: no such user
+```
+After adding ther user, run:
+```bash
+id mark
+```
+Expected result if user does not exist:
+
+```bash
+uid=900(mark) gid=900(mark) groups=900(mark)
+```
+and,
+
+🎉 Voilà! Our first task is done. 🎉
 
 
 
