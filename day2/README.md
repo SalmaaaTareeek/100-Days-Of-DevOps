@@ -13,7 +13,7 @@ The task has two main requirements:
 If you want to jump directly to the solution, please go to the [Solution](#Solution) section below.
 
 ## What is a User in Linux System Administration? 
-please see the [Day 1 folder](day1/) in this repository.
+please see the [Day 1 folder](../day1/) in this repository.
 
 ## Why Set an Expiry on a User?
 
@@ -25,7 +25,7 @@ Setting an expiry date on a user account ensures that the account is automatical
 
 ## Comparison: adduser vs useradd
 
-please see the [Day 1 folder](day1/) in this repository.
+please see the [Day 1 folder](../day1/) in this repository.
 
 
 
