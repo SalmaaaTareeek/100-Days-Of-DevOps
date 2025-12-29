@@ -10,6 +10,8 @@ The task has two main requirements:
 1. **Create a system user:**  
 2. **Assign a non-interactive shell:**  
 
+If you want to jump directly to the solution, please go to the [Solution](#Solution) section below.
+
 ## What is a User?
 
 First, let’s take a moment to think about what a **user** actually is in the context of Linux. Simply put, a user is an entity—whether a person or a system process—that can access and interact with the Linux system through an account.
@@ -78,60 +80,3 @@ Mark’s UID is `900` because he was created as a **system user**. System users 
 
 
 
-## Solution
-
-Now that you understand the tasks and the differences between the user types and shell types, let's jump into our solution.
-
-1. You are currently on the jump server. For example, if the task requires adding a user on Server 2, and according to the diagram, Port 22 (SSH) is enabled, you can connect to Server 2 using the following command:
-
-```bash
-ssh username@hostname
-```
-Example:
-
-```bash
-ssh steve@stapp02.stratos.xfusioncorp.com
-```
-
-2. The server will ask you to verify the fingerprint; type yes to continue. Then, it will prompt you for Steve's password—enter it. Voilà! Now you are logged into Server 2.
-
-3. Next, to gain root privileges, run:
-```bash
-sudo su
-```
-Enter Steve's password again to switch to the root user.
-
-4. Add a new user named **Mark** with the following command:
-
-  ```bash
-sudo adduser --system --shell /usr/sbin/nologin john
-```
-| Option          | Description                                                                                  |
-|-----------------|----------------------------------------------------------------------------------------------|
-| `--system`      | Creates a system user account, which is used for running system services and has no password. |
-| `--shell`       | Specifies the login shell for the user. In this case, `/usr/sbin/nologin` disables login.    |
-
-### Debugging: Check if user 'mark' exists
-
-Before adding the user, run:
-
-```bash
-id mark
-```
-Expected result if user does not exist:
-
-```bash
-id: ‘mark’: no such user
-```
-After adding ther user, run:
-```bash
-id mark
-```
-Expected result if user does not exist:
-
-```bash
-uid=900(mark) gid=900(mark) groups=900(mark)
-```
-and,
-
-🎉 Voilà! Our first task is done. 🎉
